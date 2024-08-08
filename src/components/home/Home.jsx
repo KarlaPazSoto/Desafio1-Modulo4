@@ -9,22 +9,22 @@ import pepperoni from '../../assets/img/pepperoni.jpg'
 const Home = () => {
     const pizzas = [
         {
-            imagen: napolitana,
+            imagen: 'https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fpizza-1239077_640_cl.jpg?alt=media&token=6a9a33da-5c00-49d4-9080-784dcc87ec2c',
             nombre: 'Napolitana',
             ingredientes: ['Tomate', 'Mozzarella', 'Albahaca'],
-            precio: 12500
+            precio: 5950
         },
         {
-            imagen: margarita,
-            nombre: 'Margarita',
-            ingredientes: ['Mozzarella', 'Albahaca'],
-            precio: 10000
+            imagen: 'https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fcheese-164872_640_com.jpg?alt=media&token=18b2b821-4d0d-43f2a1c6-8c57bc388fab',
+            nombre: 'Española',
+            ingredientes: ['Mozzarella', 'Gorgonzola', 'Parmesano','Provolone'],
+            precio: 6950
         },
         {
-            imagen: pepperoni,
+            imagen: 'https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fpizza-1239077_640_com.jpg?alt=media&token=e7cde87a-08d5-4040ac54-90f6c31eb3e3',
             nombre: 'Pepperoni',
             ingredientes: ['Orégano', 'Mozzarella', 'Pepperoni'],
-            precio: 14000
+            precio: 6950
         }
     ]
     return (

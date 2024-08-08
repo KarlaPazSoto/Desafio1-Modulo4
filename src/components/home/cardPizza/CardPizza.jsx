@@ -15,7 +15,7 @@ const CardPizza = ({ imagen, nombre, ingredientes, precio }) => {
         <p className="text-center">Ingredientes: </p>
         <p className="card-text">🍕 {ingredientes.join(', ')}</p>
         <hr />
-        <p className="card-text text-center"><strong>Precio: </strong>{formatoCLP(precio)}</p>
+        <p className="card-text text-center"><strong>Precio: {formatoCLP(precio)}</strong></p>
         <hr />
         <div className="d-flex justify-content-between">
         <a href="#" className="btn btn-light border-dark">
