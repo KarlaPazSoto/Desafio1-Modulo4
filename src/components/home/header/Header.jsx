@@ -6,7 +6,7 @@ const Header = () => {
     <div className="headerContainer container-fluid p-5">
         <div className='text-center p-5'>
         <h1>Pizzería Mamma Mia</h1>
-        <p>La Tradición Italiana en Cada Rebanada</p>
+        <p>¡Tenemos las mejores pizzas que podrás encontrar!</p>
         <hr />
         </div>
     </div>
