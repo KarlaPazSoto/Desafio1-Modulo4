@@ -1,0 +1,8 @@
+.cardContainer{
+    width: 80%;
+}
+
+.sectionContainer{
+    display: flex;
+    justify-content: center;
+}
