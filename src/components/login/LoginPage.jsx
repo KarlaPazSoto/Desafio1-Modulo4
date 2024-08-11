@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './loginPage.css'
 
 const RegisterPage = (props) => {
 
@@ -29,10 +30,11 @@ const RegisterPage = (props) => {
 
     return (
         <>
-            <div>
+            <div className='containerLogin'>
                 <h1>Login</h1>
+                <div className='containerFormLogin'>
                 <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
+                    <div className="m-3">
                         <label className="form-label">Email</label>
                         <input 
                             type="email" 
@@ -44,7 +46,7 @@ const RegisterPage = (props) => {
                             onChange={handleChange}
                         />
                     </div>
-                    <div>
+                    <div className="m-3">
                         <label className="form-label">Contraseña</label>
                         <input 
                             type="password" 
@@ -59,11 +61,12 @@ const RegisterPage = (props) => {
                             Ingrese su contraseña.
                         </div>
                     </div>
-                    <div>
+                    <div className="m-3 text-center">
                         <button type="submit" className="btn btn-dark">Login</button>
                     </div>
                     <p>{mensaje}</p>       
-                </form>        
+                </form>
+                </div>        
             </div>
         </>
     );

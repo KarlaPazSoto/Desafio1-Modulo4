@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './registerPage.css'
 
 const RegisterPage = (props) => {
 
@@ -32,10 +33,11 @@ const RegisterPage = (props) => {
 
     return (
         <>
-            <div>
+            <div className='containerRegister'>
                 <h1>Register</h1>
+                <div className='containerFormRegister'>
                 <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
+                    <div className="m-3">
                         <label className="form-label">Email</label>
                         <input 
                             type="email" 
@@ -47,7 +49,7 @@ const RegisterPage = (props) => {
                             onChange={handleChange}
                         />
                     </div>
-                    <div>
+                    <div className='m-3'>
                         <label className="form-label">Contraseña</label>
                         <input 
                             type="password" 
@@ -62,7 +64,7 @@ const RegisterPage = (props) => {
                             La contraseña debe tener al menos 6 caracteres.
                         </div>
                     </div>
-                    <div>
+                    <div className='m-3'>
                         <label className="form-label">Confirmar Contraseña</label>
                         <input 
                             type="password" 
@@ -77,11 +79,12 @@ const RegisterPage = (props) => {
                             Confirma tu contraseña.
                         </div>
                     </div>
-                    <div>
+                    <div className='m-3 text-center'>
                         <button type="submit" className="btn btn-dark">Register</button>
                     </div>
                     <p>{mensaje}</p>       
-                </form>        
+                </form>
+                </div>        
             </div>
         </>
     );

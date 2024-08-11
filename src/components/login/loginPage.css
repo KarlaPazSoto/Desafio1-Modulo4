@@ -1,0 +1,10 @@
+.containerLogin{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.containerFormLogin{
+    width: 50%;
+}

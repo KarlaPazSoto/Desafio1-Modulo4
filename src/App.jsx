@@ -16,15 +16,15 @@ function App() {
   return (
     <>
       <Navbar/>
-      <RegisterPage 
+      {/* <Home/> */}
+      {/* <RegisterPage 
       dataForm={dataForm}
       setDataForm={setDataForm}
-      />
+      /> */}
       <LoginPage
       dataForm={dataForm}
       setDataForm={setDataForm}
       />
-      <Home/>
       <Footer/>
     </>
   )
