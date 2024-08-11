@@ -1,6 +1,6 @@
 # Desafio1-Modulo4
 
-Proyecto de React con Vite.js, corresponde al Hito 1
+Proyecto de React con Vite.js
 https://karlapazsoto.github.io/Desafio1-Modulo4/
 ---
 
