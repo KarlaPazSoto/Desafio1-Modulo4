@@ -16,31 +16,28 @@ const RegisterPage = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const { email, password, confirmPassword } = props.dataForm;
+        const { email, password} = props.dataForm;
 
         if (password.length < 6) {
             setMensaje('La contraseña debe tener al menos 6 caracteres');
             alert('La contraseña debe tener al menos 6 caracteres');
-        } else if (password !== confirmPassword) {
-            setMensaje('Las contraseñas no coinciden');
-            alert('Las contraseñas no coinciden');
         } else {
             setMensaje('Registro exitoso');
-            alert('Registro exitoso');
+            alert('Registro exitoso')
         }
     };
 
     return (
         <>
             <div>
-                <h1>Register</h1>
+                <h1>Login</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
                         <label className="form-label">Email</label>
                         <input 
                             type="email" 
                             name="email" 
-                            id="email" 
+                            id="emailLogin" 
                             className="form-control"  
                             value={props.dataForm.email} 
                             required 
@@ -52,33 +49,18 @@ const RegisterPage = (props) => {
                         <input 
                             type="password" 
                             name="password" 
-                            id="password" 
+                            id="passwordLogin" 
                             className="form-control" 
                             value={props.dataForm.password} 
                             required 
                             onChange={handleChange}
                         />
                         <div id="passwordHelpBlock" className="form-text">
-                            La contraseña debe tener al menos 6 caracteres.
+                            Ingrese su contraseña.
                         </div>
                     </div>
                     <div>
-                        <label className="form-label">Confirmar Contraseña</label>
-                        <input 
-                            type="password" 
-                            name="confirmPassword" 
-                            id="confirmPassword" 
-                            className="form-control" 
-                            value={props.dataForm.confirmPassword} 
-                            required 
-                            onChange={handleChange}
-                        />
-                        <div id="passwordHelpBlock" className="form-text">
-                            Confirma tu contraseña.
-                        </div>
-                    </div>
-                    <div>
-                        <button type="submit" className="btn btn-dark">Register</button>
+                        <button type="submit" className="btn btn-dark">Login</button>
                     </div>
                     <p>{mensaje}</p>       
                 </form>        

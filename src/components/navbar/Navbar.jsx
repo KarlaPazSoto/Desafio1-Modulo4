@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './navbar.css'
 import { formatoCLP } from '../../assets/utils/utils';
 
 const Navbar = () => {
   const total = 25000;
-  const token = false
+  const [token, setToken] = useState(false);
   return (
     <>
     <nav className="navbar navbar-expand-lg  p-0">
