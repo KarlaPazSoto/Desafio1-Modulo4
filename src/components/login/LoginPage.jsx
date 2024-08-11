@@ -64,7 +64,7 @@ const RegisterPage = (props) => {
                     <div className="m-3 text-center">
                         <button type="submit" className="btn btn-dark">Login</button>
                     </div>
-                    <p>{mensaje}</p>       
+                    <p className='text-center'>{mensaje}</p>       
                 </form>
                 </div>        
             </div>
