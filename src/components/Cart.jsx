@@ -1,0 +1,106 @@
+import { useState } from 'react';
+import TarjetasPizza from './TarjetasPizza';
+import data from '../assets/utils/data.json';
+import { formatoCLP } from '../assets/utils/utils';
+
+const Cart = () => {
+  const [cart, setCart] = useState([]);
+  const [selectedPizza, setSelectedPizza] = useState(null);
+
+  const handleAddToCart = (pizza) => {
+    setCart(prevCart => {
+      const existingPizza = prevCart.find(item => item.id === pizza.id);
+      const newCart = existingPizza
+        ? prevCart.map(item => item.id === pizza.id ? { ...item, quantity: item.quantity + 1 } : item)
+        : [...prevCart, { ...pizza, quantity: 1 }];
+      return newCart;
+    });
+  };
+
+  const handleIncrease = (id) => {
+    setCart(prevCart => prevCart.map(item =>
+      item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+    ));
+  };
+
+  const handleDecrease = (id) => {
+    setCart(prevCart => prevCart.map(item =>
+      item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+    ).filter(item => item.quantity > 0));
+  };
+
+  const handleRemove = (id) => {
+    setCart(prevCart => prevCart.filter(item => item.id !== id));
+  };
+
+  const totalAmount = cart.reduce((acc, pizza) => acc + pizza.price * pizza.quantity, 0);
+
+  const handleCheckout = () => {
+    alert('Funcionalidad de pago aún no implementada.');
+  };
+
+  const handleViewDetails = (pizza) => {
+    setSelectedPizza(pizza);
+  };
+
+  return (
+    <div className="container">
+      <TarjetasPizza pizzas={data} onAddToCart={handleAddToCart} onViewDetails={handleViewDetails} />
+      {selectedPizza && (
+        <div className="modal fade show" style={{ display: 'block' }}>
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">{selectedPizza.name}</h5>
+                <button type="button" className="btn-close" onClick={() => setSelectedPizza(null)}></button>
+              </div>
+              <div className="modal-body">
+                <img src={selectedPizza.img} className="img-fluid" alt={selectedPizza.name} />
+                <p><strong>Descripción:</strong> {selectedPizza.desc}</p>
+                <p><strong>Ingredientes:</strong> {selectedPizza.ingredients.join(', ')}</p>
+                <p><strong>Precio:</strong> {formatoCLP(selectedPizza.price)}</p>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" onClick={() => setSelectedPizza(null)}>Cerrar</button>
+                <button type="button" className="btn btn-dark" onClick={() => { handleAddToCart(selectedPizza); setSelectedPizza(null); }}>Añadir al carrito</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      <h2 className="text-center">Tu Carrito</h2>
+      <div className="row">
+        {cart.map((pizza) => (
+          <div key={pizza.id} className="col-12 col-md-6 col-lg-4">
+            <div className="card m-3">
+              <div className="containerCartaImagen">
+                <img src={pizza.img} className="card-img-top cartaImagen" alt={pizza.name} />
+              </div>
+              <div className="card-body">
+                <h5 className="card-title">{pizza.name}</h5>
+                <hr />
+                <p className="text-center">Ingredientes: </p>
+                <p className="card-text">🍕 {pizza.ingredients.join(', ')}</p>
+                <hr />
+                <p className="card-text text-center"><strong>Precio: {formatoCLP(pizza.price)}</strong></p>
+                <hr />
+                <div className="d-flex justify-content-between align-items-center mt-2">
+                  <button className="btn btn-danger" onClick={() => handleDecrease(pizza.id)}>-</button>
+                  <span>Cantidad: {pizza.quantity}</span>
+                  <button className="btn btn-success" onClick={() => handleIncrease(pizza.id)}>+</button>
+                  <button className="btn btn-secondary" onClick={() => handleRemove(pizza.id)}>Eliminar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="text-center mt-4">
+        <h4>Total: {formatoCLP(totalAmount)}</h4>
+        <button className="btn btn-dark mt-3" onClick={handleCheckout}>Pagar</button>
+      </div>
+    </div>
+  );
+};
+
+export default Cart;

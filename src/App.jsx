@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import Navbar from './components/navbar/Navbar';
-import Home from "./components/home/Home";
+import home from './components/home/Home'
 import Footer from "./components/footer/Footer";
-import RegisterPage from './components/register/RegisterPage';
-import LoginPage from './components/login/LoginPage';
+import RegisterPage from './components/RegisterPage';
+import LoginPage from './components/LoginPage';
+
+import GridHome from './components/GridHome';
+import Cart from './components/Cart';
+import Carro from './components/Carro';
 
 
 function App() {
@@ -16,15 +20,18 @@ function App() {
   return (
     <>
       <Navbar/>
+      <GridHome/>
       {/* <Home/> */}
       {/* <RegisterPage 
       dataForm={dataForm}
       setDataForm={setDataForm}
       /> */}
-      <LoginPage
+      {/* <LoginPage
       dataForm={dataForm}
       setDataForm={setDataForm}
-      />
+      /> */}
+      {/* <Cart/> */}
+      <Carro/>
       <Footer/>
     </>
   )

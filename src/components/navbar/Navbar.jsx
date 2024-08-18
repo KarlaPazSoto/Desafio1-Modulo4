@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './navbar.css'
+import '../../assets/css/navbar.css'
 import { formatoCLP } from '../../assets/utils/utils';
 
 const Navbar = () => {
