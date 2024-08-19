@@ -2,6 +2,7 @@ import { useState } from 'react';
 import TarjetasPizza from './TarjetasPizza';
 import data from '../assets/utils/data.json';
 import { formatoCLP } from '../assets/utils/utils';
+import '../assets/css/cart.css'
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -69,35 +70,45 @@ const Cart = () => {
         </div>
       )}
       <h2 className="text-center">Tu Carrito</h2>
-      <div className="row">
+      <div className="container-fluid">
         {cart.map((pizza) => (
-          <div key={pizza.id} className="col-12 col-md-6 col-lg-4">
-            <div className="card m-3">
-              <div className="containerCartaImagen">
-                <img src={pizza.img} className="card-img-top cartaImagen" alt={pizza.name} />
-              </div>
-              <div className="card-body">
-                <h5 className="card-title">{pizza.name}</h5>
-                <hr />
-                <p className="text-center">Ingredientes: </p>
-                <p className="card-text">🍕 {pizza.ingredients.join(', ')}</p>
-                <hr />
-                <p className="card-text text-center"><strong>Precio: {formatoCLP(pizza.price)}</strong></p>
-                <hr />
-                <div className="d-flex justify-content-between align-items-center mt-2">
-                  <button className="btn btn-danger" onClick={() => handleDecrease(pizza.id)}>-</button>
-                  <span>Cantidad: {pizza.quantity}</span>
-                  <button className="btn btn-success" onClick={() => handleIncrease(pizza.id)}>+</button>
-                  <button className="btn btn-secondary" onClick={() => handleRemove(pizza.id)}>Eliminar</button>
-                </div>
-              </div>
-            </div>
-          </div>
+                      <ul>
+                      <li key={pizza.id}>
+                        <div className='containerLi d-flex '>
+                          <div className='d-flex align-items-center col-4'>
+                            <div className='col-4 text-center' onClick={()=> handleDecrease(pizza.id)}>
+                            <button type="button" class="btn btn-dark">-</button>
+                            </div>
+                            <div className='col-4'>
+                            <img src={pizza.img}  alt="" />
+                            </div>
+                            <div className='col-4 text-center' onClick={()=> handleIncrease(pizza.id)}>
+                            <button type="button" class="btn btn-dark">+</button>
+                            </div>
+                          </div>
+                          <div className='d-flex d-flex align-items-center justify-content-evenly col-6'>
+                            <div className='col-4'>
+                              <p>{pizza.name}</p>   
+                            </div>
+                            <div className='col-4'>
+                              <p>{formatoCLP(pizza.price)}</p>
+                            </div>
+                            <div className='col-4'>
+                              <p>{pizza.quantity}</p>
+                            </div>
+                          </div>
+                          <div className='col-2 d-flex align-items-center justify-content-center'>
+                            <button type="button" class="btn btn-dark" onClick={()=> handleRemove(pizza.id)}>🗑️</button>
+                          </div>
+                        </div>
+                      </li>
+                      <hr />
+                    </ul>
         ))}
       </div>
       <div className="text-center mt-4">
         <h4>Total: {formatoCLP(totalAmount)}</h4>
-        <button className="btn btn-dark mt-3" onClick={handleCheckout}>Pagar</button>
+        <button className="btn btn-dark m-3" onClick={handleCheckout}>Pagar</button>
       </div>
     </div>
   );

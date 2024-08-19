@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import '../../assets/css/navbar.css'
 import { formatoCLP } from '../../assets/utils/utils';
+import Cart from '../Cart';
 
 const Navbar = () => {
-  const total = 25000;
+  const total = 0;
   const [token, setToken] = useState(false);
+  console.log(total);
+  
   return (
     <>
     <nav className="navbar navbar-expand-lg  p-0">

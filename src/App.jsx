@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import Navbar from './components/navbar/Navbar';
-import home from './components/home/Home'
+import Home from './components/home/Home'
 import Footer from "./components/footer/Footer";
 import RegisterPage from './components/RegisterPage';
 import LoginPage from './components/LoginPage';
-
-import GridHome from './components/GridHome';
+import TarjetasPizza from './components/TarjetasPizza';
 import Cart from './components/Cart';
-import Carro from './components/Carro';
 
 
 function App() {
@@ -17,10 +15,12 @@ function App() {
     confirmPassword: ''
   });
 
+
+
+
   return (
     <>
-      <Navbar/>
-      <GridHome/>
+      <Navbar />
       {/* <Home/> */}
       {/* <RegisterPage 
       dataForm={dataForm}
@@ -30,8 +30,7 @@ function App() {
       dataForm={dataForm}
       setDataForm={setDataForm}
       /> */}
-      {/* <Cart/> */}
-      <Carro/>
+      <Cart/>
       <Footer/>
     </>
   )
