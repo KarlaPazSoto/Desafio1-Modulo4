@@ -6,64 +6,64 @@ import '../assets/css/cart.css'
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
-  const [selectedPizza, setSelectedPizza] = useState(null);
+  const [pizzaSelect, setPizzaSelect] = useState(null);
 
   const handleAddToCart = (pizza) => {
-    setCart(prevCart => {
-      const existingPizza = prevCart.find(item => item.id === pizza.id);
-      const newCart = existingPizza
-        ? prevCart.map(item => item.id === pizza.id ? { ...item, quantity: item.quantity + 1 } : item)
-        : [...prevCart, { ...pizza, quantity: 1 }];
-      return newCart;
+    setCart(agregados => {
+      const disponible = agregados.find(item => item.id === pizza.id);
+      const carroNuevo = disponible
+        ? agregados.map(item => item.id === pizza.id ? { ...item, quantity: item.quantity + 1 } : item)
+        : [...agregados, { ...pizza, quantity: 1 }];
+      return carroNuevo;
     });
   };
 
   const handleIncrease = (id) => {
-    setCart(prevCart => prevCart.map(item =>
+    setCart(agregados => agregados.map(item =>
       item.id === id ? { ...item, quantity: item.quantity + 1 } : item
     ));
   };
 
   const handleDecrease = (id) => {
-    setCart(prevCart => prevCart.map(item =>
+    setCart(agregados => agregados.map(item =>
       item.id === id ? { ...item, quantity: item.quantity - 1 } : item
     ).filter(item => item.quantity > 0));
   };
 
   const handleRemove = (id) => {
-    setCart(prevCart => prevCart.filter(item => item.id !== id));
+    setCart(agregados => agregados.filter(item => item.id !== id));
   };
 
-  const totalAmount = cart.reduce((acc, pizza) => acc + pizza.price * pizza.quantity, 0);
+  const total = cart.reduce((acc, pizza) => acc + pizza.price * pizza.quantity, 0);
 
   const handleCheckout = () => {
     alert('Funcionalidad de pago aún no implementada.');
   };
 
   const handleViewDetails = (pizza) => {
-    setSelectedPizza(pizza);
+    setPizzaSelect(pizza);
   };
 
   return (
     <div className="container">
       <TarjetasPizza pizzas={data} onAddToCart={handleAddToCart} onViewDetails={handleViewDetails} />
-      {selectedPizza && (
+      {pizzaSelect && (
         <div className="modal fade show" style={{ display: 'block' }}>
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title">{selectedPizza.name}</h5>
-                <button type="button" className="btn-close" onClick={() => setSelectedPizza(null)}></button>
+                <h5 className="modal-title">{pizzaSelect.name}</h5>
+                <button type="button" className="btn-close" onClick={() => setPizzaSelect(null)}></button>
               </div>
               <div className="modal-body">
-                <img src={selectedPizza.img} className="img-fluid" alt={selectedPizza.name} />
-                <p><strong>Descripción:</strong> {selectedPizza.desc}</p>
-                <p><strong>Ingredientes:</strong> {selectedPizza.ingredients.join(', ')}</p>
-                <p><strong>Precio:</strong> {formatoCLP(selectedPizza.price)}</p>
+                <img src={pizzaSelect.img} className="img-fluid" alt={pizzaSelect.name} />
+                <p><strong>Descripción:</strong> {pizzaSelect.desc}</p>
+                <p><strong>Ingredientes:</strong> {pizzaSelect.ingredients.join(', ')}</p>
+                <p><strong>Precio:</strong> {formatoCLP(pizzaSelect.price)}</p>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" onClick={() => setSelectedPizza(null)}>Cerrar</button>
-                <button type="button" className="btn btn-dark" onClick={() => { handleAddToCart(selectedPizza); setSelectedPizza(null); }}>Añadir al carrito</button>
+                <button type="button" className="btn btn-secondary" onClick={() => setPizzaSelect(null)}>Cerrar</button>
+                <button type="button" className="btn btn-dark" onClick={() => { handleAddToCart(pizzaSelect); setSelectedPizza(null); }}>Añadir al carrito</button>
               </div>
             </div>
           </div>
@@ -77,13 +77,13 @@ const Cart = () => {
                         <div className='containerLi d-flex '>
                           <div className='d-flex align-items-center col-4'>
                             <div className='col-4 text-center' onClick={()=> handleDecrease(pizza.id)}>
-                            <button type="button" class="btn btn-dark">-</button>
+                            <button type="button" className="btn btn-dark">-</button>
                             </div>
                             <div className='col-4'>
                             <img src={pizza.img}  alt="" />
                             </div>
                             <div className='col-4 text-center' onClick={()=> handleIncrease(pizza.id)}>
-                            <button type="button" class="btn btn-dark">+</button>
+                            <button type="button" className="btn btn-dark">+</button>
                             </div>
                           </div>
                           <div className='d-flex d-flex align-items-center justify-content-evenly col-6'>
@@ -98,7 +98,7 @@ const Cart = () => {
                             </div>
                           </div>
                           <div className='col-2 d-flex align-items-center justify-content-center'>
-                            <button type="button" class="btn btn-dark" onClick={()=> handleRemove(pizza.id)}>🗑️</button>
+                            <button type="button" className="btn btn-dark" onClick={()=> handleRemove(pizza.id)}>🗑️</button>
                           </div>
                         </div>
                       </li>
@@ -107,7 +107,7 @@ const Cart = () => {
         ))}
       </div>
       <div className="text-center mt-4">
-        <h4>Total: {formatoCLP(totalAmount)}</h4>
+        <h4>Total: {formatoCLP(total)}</h4>
         <button className="btn btn-dark m-3" onClick={handleCheckout}>Pagar</button>
       </div>
     </div>

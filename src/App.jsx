@@ -4,7 +4,6 @@ import Home from './components/home/Home'
 import Footer from "./components/footer/Footer";
 import RegisterPage from './components/RegisterPage';
 import LoginPage from './components/LoginPage';
-import TarjetasPizza from './components/TarjetasPizza';
 import Cart from './components/Cart';
 
 
