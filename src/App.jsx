@@ -1,10 +1,13 @@
 import { useState } from 'react';
-import Navbar from './components/navbar/Navbar';
-import Home from './components/home/Home'
+import Navbar from './components/navbar/Navbar'
+import Home2 from './components/home/Home2';
+// import RegisterPage from './components/RegisterPage';
+// import LoginPage from './components/LoginPage';
+// import Cart from './components/Cart';
 import Footer from "./components/footer/Footer";
-import RegisterPage from './components/RegisterPage';
-import LoginPage from './components/LoginPage';
-import Cart from './components/Cart';
+import Pizza from './components/Pizza';
+
+
 
 
 function App() {
@@ -19,9 +22,10 @@ function App() {
 
   return (
     <>
-      <Navbar />
-      {/* <Home/> */}
-      {/* <RegisterPage 
+      <Navbar/>
+      <Home2/>
+      <Pizza/>
+      {/* <RegisterPage
       dataForm={dataForm}
       setDataForm={setDataForm}
       /> */}
@@ -29,7 +33,7 @@ function App() {
       dataForm={dataForm}
       setDataForm={setDataForm}
       /> */}
-      <Cart/>
+      {/* <Cart/> */}
       <Footer/>
     </>
   )
