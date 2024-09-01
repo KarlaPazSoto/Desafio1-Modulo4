@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import '../../assets/css/navbar.css'
+import { Link } from 'react-router-dom';
 import { formatoCLP } from '../../assets/utils/utils';
-import Cart from '../Cart';
+import '../navbar/navbar.css'
 
 const Navbar = () => {
   const total = 0;
@@ -11,8 +11,8 @@ const Navbar = () => {
   return (
     <>
     <nav className="navbar navbar-expand-lg  p-0">
-  <div className="container-fluid p-2 bg-dark">
-    <a className="navbar-brand text-light" href="#">Mamma Mia</a>
+    <div className="container-fluid p-2 bg-dark">
+    <Link to="/">Mamma Mia</Link>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
@@ -21,33 +21,35 @@ const Navbar = () => {
         <div>
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link border border-light rounded text-light m-2" aria-current="page" href="#">🍕Home</a>
+              <Link to="/"><button type="button" className="btn btn-dark border-light">🍕Home</button></Link>
             </li>
             {token ? (
               <>
               <li className="nav-item">
-              <a className="nav-link border border-light rounded text-light m-2" href="#">🔓Profile</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link border border-light rounded text-light m-2" href="#">🔒Logout</a>
-            </li>
+                <Link to="/"><button type="button" className="btn btn-dark border-light">🔓Profile</button></Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/"><button type="button" className="btn btn-dark border-light">🔒Logout</button></Link>
+              </li>
               </>
             ) : (
               <>
               <li className="nav-item">
-              <a className="nav-link border border-light rounded text-light m-2" href="#">🔐Login</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link border border-light rounded text-light m-2" href="#">🔐Register</a>
-            </li>
+                <Link to="/login"><button type="button" className="btn btn-dark border-light">🔐Login</button></Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/register"><button type="button" className="btn btn-dark border-light">🔐Register</button></Link>
+              </li>
               </>
             )}   
           </ul>
         </div>
         <div className='navbar-nav'>
-          <li className="nav-item">
-            <a className="nav-link border border-info rounded text-info " href="#">🛒Total: {formatoCLP(total)}</a>
-          </li> 
+          <ul>
+            <li className="nav-item">
+              <Link to="/cart"><button type="button" className="btn btn-dark border-light">🛒Total: {formatoCLP(total)}</button></Link>
+            </li>  
+          </ul> 
         </div>
       </div>
     </div>

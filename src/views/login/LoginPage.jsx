@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import '../assets/css/loginPage.css'
+import '../login/loginPage.css'
+import { Link } from 'react-router-dom';
 
-const RegisterPage = (props) => {
+const LoginPage = (props) => {
+    
 
     const [mensaje, setMensaje] = useState('');
 
@@ -30,6 +32,7 @@ const RegisterPage = (props) => {
 
     return (
         <>
+            <div className="contenedorViewLogin">
             <div className='containerLogin'>
                 <h1>Login</h1>
                 <div className='containerFormLogin'>
@@ -66,10 +69,12 @@ const RegisterPage = (props) => {
                     </div>
                     <p className='text-center'>{mensaje}</p>       
                 </form>
+                <p>¿No tienes cuenta? <Link to='/register'>Registrate</Link></p>
                 </div>        
+            </div>
             </div>
         </>
     );
 };
 
-export default RegisterPage;
+export default LoginPage;

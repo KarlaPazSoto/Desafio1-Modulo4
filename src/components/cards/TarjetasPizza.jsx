@@ -1,6 +1,6 @@
 import {useState} from 'react'
-import data from '../assets/utils/data.json'
-import { formatoCLP } from '../assets/utils/utils'
+import data from '../../assets/utils/data.json'
+import { formatoCLP } from '../../assets/utils/utils'
 
 const TarjetasPizza = ({ pizzas, onAddToCart, onViewDetails }) => {
   return (

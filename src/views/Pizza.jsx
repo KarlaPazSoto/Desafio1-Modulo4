@@ -44,14 +44,7 @@ const Pizza = () => {
               <hr />
               <p className="card-text text-center"><strong>Precio: {precioFormateado}</strong></p>
               <hr />
-              <div className="d-flex justify-content-between">
-              <button className="btn btn-light border-dark">
-                Ver más 👀
-              </button>
-              <button className="btn btn-dark">
-                Añadir 🛒
-              </button>
-              </div>
+              
             </div>
           </div>
     </div>

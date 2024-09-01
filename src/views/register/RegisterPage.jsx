@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import '../assets/css/registerPage.css'
+import '../register/registerPage.css'
+import { Link } from 'react-router-dom';
 
 const RegisterPage = (props) => {
 
@@ -44,7 +45,7 @@ const RegisterPage = (props) => {
                             name="email" 
                             id="email" 
                             className="form-control"  
-                            value={props.dataForm.email} 
+                            value={props.dataForm.email || ''} 
                             required 
                             onChange={handleChange}
                         />
@@ -84,6 +85,7 @@ const RegisterPage = (props) => {
                     </div>
                     <p className='text-center'>{mensaje}</p>       
                 </form>
+                <p>¿Ya tienes cuenta? <Link to='/login'>Inicia sesión</Link></p>
                 </div>        
             </div>
         </>

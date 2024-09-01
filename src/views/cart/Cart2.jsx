@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import TarjetasPizza from './TarjetasPizza';
-import data from '../assets/utils/data.json';
-import { formatoCLP } from '../assets/utils/utils';
-import '../assets/css/cart.css'
+import { formatoCLP } from '../../assets/utils/utils';
+import TarjetasPizza from '../../components/cards/TarjetasPizza';
+import data from '../../assets/utils/data.json';
+import '../cart/cart.css'
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
