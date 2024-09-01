@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom'
 
 const Profile = () => {
   return (
-    <div>Profile</div>
+    <div>
+        <h1>Mi Perfil</h1>
+        <p>correousuario@ejemplo.cl</p>
+        <Link to={'/login'}><button className="btn btn-dark m-3">Cerrar Sesión</button></Link>
+    </div>
   )
 }
 

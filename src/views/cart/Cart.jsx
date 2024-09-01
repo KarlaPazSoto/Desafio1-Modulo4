@@ -2,26 +2,9 @@ import { useState } from 'react';
 import { formatoCLP } from '../../assets/utils/utils';
 import '../cart/cart.css';
 
-const Cart = ({ cart }) => {
-  const [localCart, setLocalCart] = useState(cart);
+const Cart = ({ cart, handleIncrease, handleDecrease, handleRemove }) => {
 
-  const handleIncrease = (id) => {
-    setLocalCart((agregados) => agregados.map(item =>
-      item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-    ));
-  };
-
-  const handleDecrease = (id) => {
-    setLocalCart((agregados) => agregados.map(item =>
-      item.id === id ? { ...item, quantity: item.quantity - 1 } : item
-    ).filter(item => item.quantity > 0));
-  };
-
-  const handleRemove = (id) => {
-    setLocalCart((agregados) => agregados.filter(item => item.id !== id));
-  };
-
-  const total = localCart.reduce((acc, pizza) => acc + pizza.price * pizza.quantity, 0);
+  const total = cart.reduce((acc, pizza) => acc + pizza.price * pizza.quantity, 0);
 
   const handleCheckout = () => {
     alert('Funcionalidad de pago aún no implementada.');
@@ -31,7 +14,7 @@ const Cart = ({ cart }) => {
     <div className="container">
       <h2 className="text-center">Tu Carrito</h2>
       <div className="container-fluid">
-        {localCart.map((pizza) => (
+        {cart.map((pizza) => (
           <ul key={pizza.id}>
             <li>
               <div className='containerLi d-flex'>

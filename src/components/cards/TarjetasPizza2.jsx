@@ -28,8 +28,7 @@ const TarjetasPizza2 = ({ onAddToCart }) => {
           <div className="card-body">
             <h5 className="card-title">{pizza.name}</h5>
             <hr />
-            <p className='text-center'>{pizza.desc}</p>
-            <hr />
+            
             <p className="text-center">Ingredientes:</p>
             <ul>
               {pizza.ingredients.map((ingredient, index) => (
@@ -43,7 +42,7 @@ const TarjetasPizza2 = ({ onAddToCart }) => {
               <Link to='/pizza/p001'><button className="btn btn-dark">
                 Ver más 👀
               </button></Link>
-              <button className="btn btn-dark" onClick={() => onAddToCart(pizza)}>Añadir al carrito 🛒</button>
+              <button className="btn btn-dark" onClick={() => onAddToCart(pizza)}>Añadir 🛒</button>
             </div>
           </div>
         </div>
