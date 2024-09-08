@@ -1,22 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { formatoCLP } from '../../assets/utils/utils';
 import { Link } from 'react-router-dom';
+import { CartContext } from '../../contexts/CartContext';
+import { TarjetasPizzaContext } from '../../contexts/TarjetasPizzaContext';
 
-const TarjetasPizza2 = ({ onAddToCart }) => {
-  const [data, setData] = useState([]);
+const TarjetasPizza2 = () => {
+  const {data} = useContext(TarjetasPizzaContext)
+  const {handleAddToCart} = useContext(CartContext)
+  
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:5000/api/pizzas');
-        const result = await response.json();
-        setData(result);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, []);
 
   return (
     <div className='container-fluid justify-content-evenly row'>
@@ -39,10 +31,10 @@ const TarjetasPizza2 = ({ onAddToCart }) => {
             <p className="card-text text-center"><strong>Precio: {formatoCLP(pizza.price)}</strong></p>
             <hr />
             <div className="d-flex justify-content-between">
-              <Link to='/pizza/p001'><button className="btn btn-dark">
+              <Link to={`/pizza/${pizza.id}`}><button className="btn btn-dark">
                 Ver más 👀
               </button></Link>
-              <button className="btn btn-dark" onClick={() => onAddToCart(pizza)}>Añadir 🛒</button>
+              <button className="btn btn-dark" onClick={() => handleAddToCart(pizza)}>Añadir 🛒</button>
             </div>
           </div>
         </div>

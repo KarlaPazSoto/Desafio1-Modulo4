@@ -1,14 +1,11 @@
-import { useState } from 'react';
+import { useContext } from 'react';
+import { CartContext } from '../../contexts/CartContext';
 import { formatoCLP } from '../../assets/utils/utils';
 import '../cart/cart.css';
 
-const Cart = ({ cart, handleIncrease, handleDecrease, handleRemove }) => {
+const Cart = () => {
+  const { cart, total, formatoCLP, handleIncrease, handleDecrease, handleRemove, handleCheckout } = useContext(CartContext);
 
-  const total = cart.reduce((acc, pizza) => acc + pizza.price * pizza.quantity, 0);
-
-  const handleCheckout = () => {
-    alert('Funcionalidad de pago aún no implementada.');
-  };
 
   return (
     <div className="container">

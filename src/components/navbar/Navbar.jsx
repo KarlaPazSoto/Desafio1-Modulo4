@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { formatoCLP } from '../../assets/utils/utils';
 import '../navbar/navbar.css'
+import { CartContext } from '../../contexts/CartContext';
 
-const Navbar = ({total}) => {
+const Navbar = () => {
 
   const [token, setToken] = useState(true);
-  console.log(total);
+
+
+  const {total} = useContext(CartContext);
 
   const handleLogout = () => {
     setToken(false);
