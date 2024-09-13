@@ -3,18 +3,14 @@ import { Link } from 'react-router-dom';
 import { formatoCLP } from '../../assets/utils/utils';
 import '../navbar/navbar.css'
 import { CartContext } from '../../contexts/CartContext';
+import { UserContext } from '../../contexts/UserContext';
 
 const Navbar = () => {
 
-  const [token, setToken] = useState(true);
-
+  const {token, handleLogout} = useContext(UserContext);
 
   const {total} = useContext(CartContext);
 
-  const handleLogout = () => {
-    setToken(false);
-  }
-  
   return (
     <>
     <nav className="navbar navbar-expand-lg  p-0">

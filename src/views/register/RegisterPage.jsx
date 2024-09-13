@@ -1,16 +1,20 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import '../register/registerPage.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from '../../contexts/UserContext';
 
-const RegisterPage = (props) => {
+const RegisterPage = () => {
 
     const [mensaje, setMensaje] = useState('');
+    const {handleRegister} = useContext(UserContext);
+    const [dataForm, setDataForm] = useState({email:'', password:'', confirmPassword:''});
+    const navigate = useNavigate();
 
     const handleChange = (event) => {
         const { name, value } = event.target;
 
-        props.setDataForm({
-            ...props.dataForm,
+        setDataForm({
+            ...dataForm,
             [name]: value,
         });
     };
@@ -18,7 +22,7 @@ const RegisterPage = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const { email, password, confirmPassword } = props.dataForm;
+        const { email, password, confirmPassword } = dataForm;
 
         if (password.length < 6) {
             setMensaje('La contraseña debe tener al menos 6 caracteres');
@@ -27,8 +31,10 @@ const RegisterPage = (props) => {
             setMensaje('Las contraseñas no coinciden');
             alert('Las contraseñas no coinciden');
         } else {
+            handleRegister();
             setMensaje('Registro exitoso');
             alert('Registro exitoso');
+            navigate('/')
         }
     };
 
@@ -45,7 +51,7 @@ const RegisterPage = (props) => {
                             name="email" 
                             id="email" 
                             className="form-control"  
-                            value={props.dataForm.email || ''} 
+                            value={dataForm.email || ''} 
                             required 
                             onChange={handleChange}
                         />
@@ -57,7 +63,7 @@ const RegisterPage = (props) => {
                             name="password" 
                             id="password" 
                             className="form-control" 
-                            value={props.dataForm.password} 
+                            value={dataForm.password} 
                             required 
                             onChange={handleChange}
                         />
@@ -72,7 +78,7 @@ const RegisterPage = (props) => {
                             name="confirmPassword" 
                             id="confirmPassword" 
                             className="form-control" 
-                            value={props.dataForm.confirmPassword} 
+                            value={dataForm.confirmPassword} 
                             required 
                             onChange={handleChange}
                         />

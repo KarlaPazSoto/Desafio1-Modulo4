@@ -1,5 +1,6 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { formatoCLP } from "../assets/utils/utils";
+import { UserContext } from "./UserContext";
 
 export const CartContext = createContext();
 
@@ -7,6 +8,7 @@ export const CartProvider = ({children}) => {
 
     const [cart, setCart] = useState([]);
     const [total, setTotal] = useState(0);
+    const {token} = useContext(UserContext);
 
     const handleAddToCart = (pizza) => {
       setCart((agregados) => {
@@ -35,7 +37,11 @@ export const CartProvider = ({children}) => {
     };
 
     const handleCheckout = () => {
-        alert('Funcionalidad de pago aún no implementada.');
+        if(token) {
+          alert('Pago aceptado')
+        }else{
+          alert('Pago no permitido, debes inciar sesión')
+        }
       };
   
     useEffect(()=>{

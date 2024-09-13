@@ -1,17 +1,19 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import '../login/loginPage.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from '../../contexts/UserContext';
 
-const LoginPage = (props) => {
-    
-
+const LoginPage = () => {
     const [mensaje, setMensaje] = useState('');
+    const { handleLogin } = useContext(UserContext)
+    const [dataForm, setDataForm] = useState({email: '', password: ''})
+    const navigate = useNavigate();
 
     const handleChange = (event) => {
         const { name, value } = event.target;
 
-        props.setDataForm({
-            ...props.dataForm,
+        setDataForm({
+            ...dataForm,
             [name]: value,
         });
     };
@@ -19,14 +21,16 @@ const LoginPage = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const { email, password} = props.dataForm;
+        const { email, password} = dataForm;
 
         if (password.length < 6) {
             setMensaje('La contraseña debe tener al menos 6 caracteres');
             alert('La contraseña debe tener al menos 6 caracteres');
         } else {
-            setMensaje('Registro exitoso');
-            alert('Registro exitoso')
+            handleLogin();
+            setMensaje('Ingreso exitoso');
+            alert('Ingreso exitoso')
+            navigate('/')
         }
     };
 
@@ -44,7 +48,7 @@ const LoginPage = (props) => {
                             name="email" 
                             id="emailLogin" 
                             className="form-control"  
-                            value={props.dataForm.email} 
+                            value={dataForm.email} 
                             required 
                             onChange={handleChange}
                         />
@@ -56,7 +60,7 @@ const LoginPage = (props) => {
                             name="password" 
                             id="passwordLogin" 
                             className="form-control" 
-                            value={props.dataForm.password} 
+                            value={dataForm.password} 
                             required 
                             onChange={handleChange}
                         />

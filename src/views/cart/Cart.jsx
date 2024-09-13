@@ -2,10 +2,11 @@ import { useContext } from 'react';
 import { CartContext } from '../../contexts/CartContext';
 import { formatoCLP } from '../../assets/utils/utils';
 import '../cart/cart.css';
+import { UserContext } from '../../contexts/UserContext';
 
 const Cart = () => {
   const { cart, total, formatoCLP, handleIncrease, handleDecrease, handleRemove, handleCheckout } = useContext(CartContext);
-
+  const {token} = useContext(UserContext)
 
   return (
     <div className="container">
@@ -48,7 +49,7 @@ const Cart = () => {
       </div>
       <div className="text-center mt-4">
         <h4>Total: {formatoCLP(total)}</h4>
-        <button className="btn btn-dark m-3" onClick={handleCheckout}>Pagar</button>
+        <button className="btn btn-dark m-3" onClick={handleCheckout} disabled={!token} >Pagar</button>
       </div>
     </div>
   );
