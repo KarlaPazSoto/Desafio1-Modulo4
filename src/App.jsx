@@ -29,7 +29,7 @@ function App() {
         <Route path='/pizza/:id' element={<Pizza />} />
           <Route path='/login' element={<LoginPage/>} />
           <Route path='/register' element={<RegisterPage />}/>
-          <Route path='/profile' element={token ? <Profile /> : <Navigate to='/login'/>}/>
+          <Route path='/profile' element={token ? <Profile /> : <Navigate to='/'/>}/>
           <Route path='*' element={<NotFound/>}/>
         </Routes>
       <Footer/>
