@@ -19,7 +19,7 @@ const RegisterPage = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const { email, password, confirmPassword } = dataForm;
@@ -27,15 +27,14 @@ const RegisterPage = () => {
         if (password.length < 6) {
             setMensaje('La contraseña debe tener al menos 6 caracteres');
             alert('La contraseña debe tener al menos 6 caracteres');
-        } else if (password !== confirmPassword) {
+            return;
+        }
+        if (password !== confirmPassword) {
             setMensaje('Las contraseñas no coinciden');
             alert('Las contraseñas no coinciden');
-        } else {
-            handleRegister();
-            setMensaje('Registro exitoso');
-            alert('Registro exitoso');
-            navigate('/')
+            return;
         }
+        handleRegister(email, password);
     };
 
     return (

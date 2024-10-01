@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { formatoCLP } from "../assets/utils/utils";
 import { UserContext } from "./UserContext";
+import axios from "axios";
 
 export const CartContext = createContext();
 
@@ -8,7 +9,7 @@ export const CartProvider = ({children}) => {
 
     const [cart, setCart] = useState([]);
     const [total, setTotal] = useState(0);
-    const {token} = useContext(UserContext);
+    const {user} = useContext(UserContext);
 
     const handleAddToCart = (pizza) => {
       setCart((agregados) => {
@@ -36,11 +37,29 @@ export const CartProvider = ({children}) => {
       setCart((agregados) => agregados.filter(item => item.id !== id));
     };
 
-    const handleCheckout = () => {
-        if(token) {
-          alert('Pago aceptado')
-        }else{
-          alert('Pago no permitido, debes inciar sesión')
+    const handleCheckout = async () => {
+        if(!user.token) {
+          alert('Debes iniciar sesión.');
+          return;
+        }
+
+        try{
+          const response = await axios.post('http://localhost:5000/api/checkouts',
+            {cart}, {
+              headers: {
+                Authorization: `Bearer ${user.token}`
+              },
+            }
+          );
+          if (response.status === 200) {
+            alert('Compra exitosa.');
+            setCart([]);
+          }else{
+            alert('Error al procesar la compra.')
+          }
+        }catch(error) {
+          console.error('Error al realizar el checkout.', error);
+          alert('Error al realizar la compra. Intente nuevamente.');
         }
       };
   

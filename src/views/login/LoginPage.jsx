@@ -1,13 +1,17 @@
-import { useContext, useState } from 'react';
-import '../login/loginPage.css'
+import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../contexts/UserContext';
+import '../login/loginPage.css'
 
 const LoginPage = () => {
     const [mensaje, setMensaje] = useState('');
-    const { handleLogin } = useContext(UserContext)
     const [dataForm, setDataForm] = useState({email: '', password: ''})
+    const { handleLogin } = useContext(UserContext)
     const navigate = useNavigate();
+
+    useEffect(() => {
+        setDataForm({email:'', password:''});
+    },[handleLogin]);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -18,20 +22,11 @@ const LoginPage = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const { email, password} = dataForm;
-
-        if (password.length < 6) {
-            setMensaje('La contraseña debe tener al menos 6 caracteres');
-            alert('La contraseña debe tener al menos 6 caracteres');
-        } else {
-            handleLogin();
-            setMensaje('Ingreso exitoso');
-            alert('Ingreso exitoso')
-            navigate('/')
-        }
+        const { email, password } = dataForm;
+        handleLogin(email, password);
     };
 
     return (

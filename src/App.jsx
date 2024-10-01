@@ -17,7 +17,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() { 
 
-  const {token} = useContext(UserContext)
+  const {user} = useContext(UserContext)
 
   return (
     <>
@@ -29,7 +29,7 @@ function App() {
         <Route path='/pizza/:id' element={<Pizza />} />
           <Route path='/login' element={<LoginPage/>} />
           <Route path='/register' element={<RegisterPage />}/>
-          <Route path='/profile' element={token ? <Profile /> : <Navigate to='/'/>}/>
+          <Route path='/profile' element={user.token ? <Profile /> : <Navigate to='/profile'/>}/>
           <Route path='*' element={<NotFound/>}/>
         </Routes>
       <Footer/>

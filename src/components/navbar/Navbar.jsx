@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { formatoCLP } from '../../assets/utils/utils';
 import '../navbar/navbar.css'
 import { CartContext } from '../../contexts/CartContext';
@@ -7,9 +7,11 @@ import { UserContext } from '../../contexts/UserContext';
 
 const Navbar = () => {
 
-  const {token, handleLogout} = useContext(UserContext);
-
+  const {user, handleLogout} = useContext(UserContext);
   const {total} = useContext(CartContext);
+  const navigate = useNavigate();
+
+
 
   return (
     <>
@@ -26,13 +28,13 @@ const Navbar = () => {
             <li className="nav-item">
               <Link to="/"><button type="button" className="btn btn-dark border-light m-1">🍕Home</button></Link>
             </li>
-            {token ? (
+            {user.token ? (
               <>
               <li className="nav-item">
                 <Link to="/profile"><button type="button" className="btn btn-dark border-light m-1">🔓Profile</button></Link>
               </li>
               <li className="nav-item">
-                <Link to="/"><button type="button" className="btn btn-dark border-light m-1" onClick={handleLogout}>🔒Logout</button></Link>
+                <button type="button" className="btn btn-dark border-light m-1" onClick={handleLogout}>🔒Logout</button>
               </li>
               </>
             ) : (
